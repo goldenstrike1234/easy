@@ -1,0 +1,56 @@
+<?php
+// Parent class
+class Student {
+    public $name;
+    public $subjects;
+
+    public function __construct($name, $subjects) {
+        $this->name = $name;
+        $this->subjects = $subjects;
+    }
+}
+
+// Child class
+class Tests extends Student {
+    public $test1Marks = [];
+    public $test2Marks = [];
+
+    public function setMarks($test1, $test2) {
+        $this->test1Marks = $test1;
+        $this->test2Marks = $test2;
+    }
+}
+
+// Grandchild class
+class Result extends Tests {
+    public function display() {
+        echo "Student Name: " . $this->name . "\n\n";
+        foreach ($this->subjects as $subject) {
+            $t1 = isset($this->test1Marks[$subject]) ? $this->test1Marks[$subject] : 0;
+            $t2 = isset($this->test2Marks[$subject]) ? $this->test2Marks[$subject] : 0;
+
+            $t1_percent = round(($t1 / 20) * 100, 2);
+            $t2_percent = round(($t2 / 20) * 100, 2);
+            $average = round(($t1 + $t2) / 2, 2);
+
+            echo "Subject: $subject\n";
+            echo "  Test 1 Marks: $t1\n";
+            echo "  Test 2 Marks: $t2\n";
+            echo "  Test 1 Percentage: {$t1_percent}%\n";
+            echo "  Test 2 Percentage: {$t2_percent}%\n";
+            echo "  Average Marks: $average\n";
+            echo "-----------------------------\n";
+        }
+    }
+}
+
+// --- Example Usage ---
+$subjects = ['Math', 'Science', 'English'];
+$student = new Result("John Doe", $subjects);
+
+$test1 = ['Math' => 18, 'Science' => 17, 'English' => 19];
+$test2 = ['Math' => 19, 'Science' => 18, 'English' => 20];
+
+$student->setMarks($test1, $test2);
+$student->display();
+?>
