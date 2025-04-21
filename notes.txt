@@ -1,0 +1,889 @@
+MAD Practical Exam Question Bank
+
+
+1. Write a program to demonstrate the use of Linear Layout and and Absolute Layout
+Ans :
+Linear Layout :
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Linear Layout Example" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Click Me" />
+</LinearLayout>
+package com.example.layoutdemo;
+
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class LinearActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_linear);
+    }
+}
+Absolute Layout : 
+<?xml version="1.0" encoding="utf-8"?>
+<AbsoluteLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_x="50dp"
+        android:layout_y="100dp"
+        android:text="Absolute Button" />
+</AbsoluteLayout>
+package com.example.layoutdemo;
+
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class AbsoluteActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_absolute);
+    }
+}
+
+2. Develop a program to implement table layout and relative layout
+Ans :
+Table Layout :
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="1">
+
+    <TableRow>
+        <TextView android:text="Name" />
+        <EditText android:hint="Enter Name" />
+    </TableRow>
+
+    <TableRow>
+        <TextView android:text="Email" />
+        <EditText android:hint="Enter Email" />
+    </TableRow>
+</TableLayout>
+package com.example.layoutdemo;
+
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class TableActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_table);
+    }
+}
+Relative Layout : 
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="First Button" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Second Button"
+        android:layout_below="@id/button1"
+        android:layout_marginTop="20dp" />
+</RelativeLayout>
+package com.example.layoutdemo;
+
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class RelativeActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_relative);
+    }
+}
+3. Write a program to demonstrate the use of Autocomplete Textview
+Ans :
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <AutoCompleteTextView
+        android:id="@+id/autoCompleteTextView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Type a country" />
+</LinearLayout>
+package com.example.layoutdemo;
+
+import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class AutoCompleteActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_autocomplete);
+
+        AutoCompleteTextView actv = findViewById(R.id.autoCompleteTextView);
+        String[] countries = {"India", "Indonesia", "Iceland", "Italy", "Iran", "Iraq"};
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, countries);
+        actv.setAdapter(adapter);
+    }
+}
+4. Write a program to demonstrate the use of Radio Button
+Ans :
+<?xml version="1.0" encoding="utf-8"?>
+<RadioGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:id="@+id/radioGroup">
+
+    <RadioButton
+        android:id="@+id/radioMale"
+        android:text="Male" />
+    <RadioButton android:id="@+id/radioFemale" android:text="Female" />
+</RadioGroup>
+package com.example.layoutdemo;
+
+import android.os.Bundle;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
+import android.widget.Toast;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class RadioActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_radio);
+
+        RadioGroup rg = findViewById(R.id.radioGroup);
+        rg.setOnCheckedChangeListener((group, checkedId) -> {
+            RadioButton selected = findViewById(checkedId);
+            Toast.makeText(this, "Selected: " + selected.getText(), Toast.LENGTH_SHORT).show();
+        });
+    }
+}
+5. Write a program to demonstrate the use of List View
+Ans :
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/listView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
+package com.example.layoutdemo;
+
+import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class ListActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_list);
+
+        ListView listView = findViewById(R.id.listView);
+        String[] names = {"Apple", "Banana", "Mango", "Orange"};
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, names);
+        listView.setAdapter(adapter);
+    }
+}
+6. Write a program to create a of Custom Toast
+Ans :
+activity_main.xml code:
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="15dp"
+    tools:context=".MainActivity">
+    <TextView
+        android:id="@+id/t1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Toast Example"
+
+        />
+    <Button
+        android:id="@+id/customToast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Custom Toast" />
+</LinearLayout>
+
+custom_toast_layout.xml code:
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/toast_layout_root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/black"
+    android:padding="8dp"
+    >
+    <TextView
+        android:id="@+id/largetext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+    <TextView
+        android:id="@+id/smalltext"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        />
+</LinearLayout>
+
+MainActivity.java :
+
+package com.example.q1;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+public class MainActivity extends AppCompatActivity {
+Button simpleToast, customToast;
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
+    customToast = (Button) findViewById(R.id.customToast);
+    customToast.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            LayoutInflater inflater = getLayoutInflater();
+            View layout = inflater.inflate(R.layout.custom_toast_layout, (ViewGroup)
+                    findViewById(R.id.toast_layout_root));
+            TextView toastTextView = (TextView) layout.findViewById(R.id.largetext);
+            TextView toastTextView2 = (TextView) layout.findViewById(R.id.smalltext);
+            toastTextView.setText("Message for you :");
+            toastTextView2.setText("Hii John");
+            Toast toast = new Toast(getApplicationContext());
+            toast.setDuration(Toast.LENGTH_LONG);
+            toast.setView(layout);
+            toast.show();
+        }
+    });
+}
+}
+
+
+
+7. Write a program to demonstrate the use of DatePicker
+Ans :
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:gravity="center">
+
+    <DatePicker
+        android:id="@+id/datePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:datePickerMode="calendar" />
+
+    <Button
+        android:id="@+id/btnShowDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show Selected Date"
+        android:layout_marginTop="20dp" />
+
+    <TextView
+        android:id="@+id/txtDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Selected date will appear here"
+        android:textSize="18sp"
+        android:layout_marginTop="20dp" />
+</LinearLayout>
+
+package com.example.datepickerxml;
+
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    DatePicker datePicker;
+    Button btnShowDate;
+    TextView txtDate;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        datePicker = findViewById(R.id.datePicker);
+        btnShowDate = findViewById(R.id.btnShowDate);
+        txtDate = findViewById(R.id.txtDate);
+
+        btnShowDate.setOnClickListener(v -> {
+            int day = datePicker.getDayOfMonth();
+            int month = datePicker.getMonth() + 1; // month is 0-based
+            int year = datePicker.getYear();
+            String date = day + "/" + month + "/" + year;
+            txtDate.setText("Selected Date: " + date);
+        });
+    }
+}
+
+
+8. Android Program to enable and disable WiFi Connection
+Ans :
+activity_main.xml code :
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enable_wifi" />
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Disable_wifi" />
+</LinearLayout>
+
+MainActivity.java code:
+
+package com.example.q8;
+
+import android.net.wifi.WifiManager;
+import android.os.Bundle;
+import android.app.Activity;
+import android.content.Context;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+public class MainActivity extends Activity {
+    Button enableButton,disableButton;
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        enableButton=(Button)findViewById(R.id.button1);
+        disableButton=(Button)findViewById(R.id.button2);
+        enableButton.setOnClickListener(new OnClickListener(){
+            public void onClick(View v){
+                WifiManager wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+                wifi.setWifiEnabled(true);
+            }
+        });
+        disableButton.setOnClickListener(new OnClickListener(){
+            public void onClick(View v){
+                WifiManager wifi = (WifiManager) getApplicationContext().getSystemService(Context.WIFI_SERVICE);
+                wifi.setWifiEnabled(false);
+            }
+        });
+    }
+}
+
+Manifest code:
+
+<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+
+
+
+
+
+9. Develop a program to implement explicit intent and implicit intent
+Ans :
+Manifest : <application
+    ... >
+    <activity android:name=".SecondActivity" />
+    <activity android:name=".MainActivity">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+    </activity>
+</application>
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="20dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    
+    <Button android:id="@+id/btnExplicit"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="Explicit Intent" />
+
+    <Button android:id="@+id/btnImplicit"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="Implicit Intent" />
+</LinearLayout>
+package com.example.layoutdemo;
+
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.widget.Button;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+    Button btnExplicit, btnImplicit;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        
+        btnExplicit = findViewById(R.id.btnExplicit);
+        btnImplicit = findViewById(R.id.btnImplicit);
+
+        btnExplicit.setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+            startActivity(intent);
+        });
+
+        btnImplicit.setOnClickListener(v -> {
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com"));
+            startActivity(intent);
+        });
+    }
+}
+
+Second activity : 
+package com.example.myapplication;
+
+import android.os.Bundle;
+import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class SecondActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_second);
+
+        TextView textView = findViewById(R.id.textView);
+        textView.setText("This is the Second Activity");
+    }
+}
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Welcome!"
+        android:textSize="20sp" />
+</LinearLayout>
+
+10. Write a program to send SMS
+Ans :
+activity_main.xml code:
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/fstTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mobile No"
+        android:layout_marginTop="50dp" />
+
+    <EditText
+        android:id="@+id/mblTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter mobile number"
+        android:inputType="phone" />
+
+    <TextView
+        android:id="@+id/secTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Message"
+        android:layout_marginTop="30dp" />
+
+    <EditText
+        android:id="@+id/msgTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Type your message"
+        android:inputType="textMultiLine" />
+
+    <Button
+        android:id="@+id/btnSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Send SMS"
+        android:layout_marginTop="30dp" />
+</LinearLayout>
+
+MainActivity.java Code:
+
+package com.example.q10;
+
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Bundle;
+import android.telephony.SmsManager;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
+public class MainActivity extends AppCompatActivity {
+
+    private EditText txtMobile;
+    private EditText txtMessage;
+    private Button btnSms;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        txtMobile = findViewById(R.id.mblTxt);
+        txtMessage = findViewById(R.id.msgTxt);
+        btnSms = findViewById(R.id.btnSend);
+
+        // Request SMS permission if not already granted
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.SEND_SMS)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, 1);
+        }
+
+        btnSms.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String number = txtMobile.getText().toString();
+                String message = txtMessage.getText().toString();
+
+                if (!number.isEmpty() && !message.isEmpty()) {
+                    try {
+                        SmsManager smsManager = SmsManager.getDefault();
+                        smsManager.sendTextMessage(number, null, message, null, null);
+                        Toast.makeText(MainActivity.this, "SMS Sent Successfully", Toast.LENGTH_SHORT).show();
+                    } catch (Exception e) {
+                        Toast.makeText(MainActivity.this, "SMS Failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    Toast.makeText(MainActivity.this, "Please enter both number and message", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+}
+
+AndroidManifest.xml code:
+
+<uses-permission android:name="android.permission.SEND_SMS"/>
+<uses-feature android:name="android.hardware.telephony" android:required="false" />
+
+
+
+
+
+11. Android to display all available sensors in a mobile device.
+Ans :
+<?xml version="1.0" encoding="utf-8"?>
+<ListView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/listSensors"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
+
+package com.example.layoutdemo;
+
+import android.hardware.Sensor;
+import android.hardware.SensorManager;
+import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import androidx.appcompat.app.AppCompatActivity;
+import java.util.ArrayList;
+import java.util.List;
+
+public class SensorsActivity extends AppCompatActivity {
+    ListView listView;
+    SensorManager sensorManager;
+    List<Sensor> sensors;
+    ArrayList<String> sensorNames = new ArrayList<>();
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_sensors);
+
+        listView = findViewById(R.id.listSensors);
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        sensors = sensorManager.getSensorList(Sensor.TYPE_ALL);
+
+        for (Sensor s : sensors) {
+            sensorNames.add(s.getName());
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, sensorNames);
+        listView.setAdapter(adapter);
+    }
+}
+
+12. Write a Bluetooth Android program to Turn ON Bluetooth, Turn OFF Bluetooth, make device visible and display the list of all available Bluetooth devices.
+Ans :
+activity_main.xml code:
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Bluetooth Example"
+        android:textSize="30sp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"/>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Turn On"
+        android:onClick="on"
+        android:layout_below="@id/textview"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="20dp"/>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Get Visible"
+        android:onClick="visible"
+        android:layout_below="@id/textview"
+        android:layout_toEndOf="@id/button"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"/>
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Turn Off"
+        android:onClick="off"
+        android:layout_below="@id/button"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="20dp"/>
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="List Devices"
+        android:onClick="list"
+        android:layout_below="@id/button2"
+        android:layout_toEndOf="@id/button4"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Paired devices:"
+        android:textColor="#00AA00"
+        android:textSize="20sp"
+        android:layout_below="@id/button3"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="20dp"/>
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView2"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"/>
+</RelativeLayout>
+
+MainActivity.java code:
+package in.edu.vpt.bluetooth;
+
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
+import java.util.Set;
+
+public class MainActivity extends AppCompatActivity {
+
+    Button b1, b2, b3, b4;
+    private BluetoothAdapter BA;
+    private Set<BluetoothDevice> pairedDevices;
+    ListView lv;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        b1 = findViewById(R.id.button);
+        b2 = findViewById(R.id.button2);
+        b3 = findViewById(R.id.button3);
+        b4 = findViewById(R.id.button4);
+
+        lv = findViewById(R.id.listView);
+
+        BA = BluetoothAdapter.getDefaultAdapter();
+
+        if (BA == null) {
+            Toast.makeText(getApplicationContext(), "Bluetooth not supported", Toast.LENGTH_LONG).show();
+            finish(); // Close app if Bluetooth is not supported
+        }
+    }
+
+    public void on(View v) {
+        if (!BA.isEnabled()) {
+            Intent turnOn = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(turnOn, 0);
+            Toast.makeText(getApplicationContext(), "Bluetooth Turned ON", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "Bluetooth is already ON", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void off(View v) {
+        if (BA.isEnabled()) {
+            BA.disable();
+            Toast.makeText(getApplicationContext(), "Bluetooth Turned OFF", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "Bluetooth is already OFF", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void visible(View v) {
+        Intent getVisible = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
+        getVisible.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 120);
+        startActivity(getVisible);
+    }
+
+    public void list(View v) {
+        pairedDevices = BA.getBondedDevices();
+        ArrayList<String> list = new ArrayList<>();
+
+        for (BluetoothDevice bt : pairedDevices) {
+            list.add(bt.getName() + "\n" + bt.getAddress());
+        }
+
+        Toast.makeText(getApplicationContext(), "Showing Paired Devices", Toast.LENGTH_SHORT).show();
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
+        lv.setAdapter(adapter);
+    }
+}
+
+AndroidManifest.xml code:
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="in.edu.vpt.bluetooth">
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.AppCompat.Light.DarkActionBar">
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>
+
+
+
+
